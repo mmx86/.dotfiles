@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-# Installs dotfile packages using stow
+## Dotfile packages installation using stow.
+
 
 # Exit on non-zero status.
 set -e
@@ -9,9 +10,11 @@ set -u
 # Xtrace. Print executed commands.
 #set -x
 
+
 SCRIPT_FILE=$(readlink -f "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_FILE")
-STOW_PACKAGES_DIR=${SCRIPT_DIR}/packages
+
+STOW_PACKAGES_DIR=${SCRIPT_DIR}
 STOW_TARGET_DIR=$HOME
 
 
@@ -26,5 +29,7 @@ do
         -t "${STOW_TARGET_DIR}" \
         -vv \
         "$package"
+
     echo
 done
+
