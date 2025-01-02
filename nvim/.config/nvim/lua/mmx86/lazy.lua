@@ -57,11 +57,13 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 
 -- Setup lazy.nvim
+-- https://lazy.folke.io/configuration
 require("lazy").setup({
-  spec = {
-    -- import your plugins
-    { import = "mmx86.lazy" },
-  },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+    spec = {
+        { import = "mmx86.plugins" },  -- import your plugins
+    },
+    -- automatically check for config file changes and reload the ui
+    change_detection = { notify = false },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
 })
