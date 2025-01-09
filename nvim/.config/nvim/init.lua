@@ -5,6 +5,7 @@ require('mmx86')
 local autocmd = vim.api.nvim_create_autocmd
 
 
+-- Reference: https://lsp-zero.netlify.app/docs/language-server-configuration.html
 autocmd('LspAttach', {
     callback = function(e)
         local opts = { buffer = e.buf }

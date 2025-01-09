@@ -26,7 +26,8 @@ return {
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
         require("fidget").setup({})
         require("mason").setup()
@@ -36,6 +37,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 -- Python
+                --"pylsp",
                 "pyright",
             },
             handlers = {
@@ -75,6 +77,23 @@ return {
                         }
                     }
                 end,
+                --pylsp = function()
+                --    local lspconfig = require("lspconfig")
+                --    lspconfig.pylsp.setup({
+                --        capabilities = require("cmp_nvim_lsp").update_capabilities(
+                --            vim.lsp.protocol.make_client_capabilities()
+                --        ),
+                --        settings = {
+                --            pylsp = {
+                --                plugins = {
+                --                    jedi_completion = {
+                --                        include_params = true,
+                --                    },
+                --                },
+                --            },
+                --        },
+                --    })
+                --end,
             }
         })
 
@@ -89,7 +108,7 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
                 ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-                ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+                ["<Tab>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
