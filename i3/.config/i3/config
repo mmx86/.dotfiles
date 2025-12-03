@@ -232,3 +232,8 @@ exec --no-startup-id udiskie -ans &
 ### xinput enable/disable devices (keyboard).
 exec --no-startup-id input-device-indicator &
 exec --no-startup-id redshift &
+
+
+# Local settings for a specific machine.
+# Not stored in vcs.
+include ~/.config/i3/local.d/*
