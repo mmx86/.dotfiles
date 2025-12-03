@@ -234,6 +234,6 @@ exec --no-startup-id input-device-indicator &
 exec --no-startup-id redshift &
 
 
-# Local settings for a specific machine.
+# Local settings for a specific device.
 # Not stored in vcs.
 include ~/.config/i3/local.d/*
