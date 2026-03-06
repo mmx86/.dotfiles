@@ -1,2 +1,94 @@
 :set relativenumber
 :set number 
+
+" Set leader to space.
+let mapleader = " "
+
+
+"""
+" IDEA specific
+"""
+
+" Handle ideavim config.
+nnoremap <leader>ve :e ~/.ideavimrc<CR>
+nnoremap <leader>vr :source ~/.ideavimrc<CR>
+
+nmap <leader>? :action GotoAction<CR>
+
+
+"" MARKS
+"" Only global marks are shown as bookmarks in pycharm. Make all marks global :E
+"nnoremap ma mA
+"nnoremap mb mB
+"nnoremap mc mC
+"nnoremap md mD
+"nnoremap me mE
+"nnoremap mf mF
+"nnoremap mg mG
+"nnoremap mh mH
+"nnoremap mi mI
+"nnoremap mj mJ
+"nnoremap mk mK
+"nnoremap ml mL
+"nnoremap mm mM
+"nnoremap mn mN
+"nnoremap mo mO
+"nnoremap mp mP
+"nnoremap mq mQ
+"nnoremap mr mR
+"nnoremap ms mS
+"nnoremap mt mT
+"nnoremap mu mU
+"nnoremap mv mV
+"nnoremap mw mW
+"nnoremap mx mX
+"nnoremap my mY
+"nnoremap mz mZ
+"nnoremap 'a 'A
+"nnoremap 'b 'B
+"nnoremap 'c 'C
+"nnoremap 'd 'D
+"nnoremap 'e 'E
+"nnoremap 'f 'F
+"nnoremap 'g 'G
+"nnoremap 'h 'H
+"nnoremap 'i 'I
+"nnoremap 'j 'J
+"nnoremap 'k 'K
+"nnoremap 'l 'L
+"nnoremap 'm 'M
+"nnoremap 'n 'N
+"nnoremap 'o 'O
+"nnoremap 'p 'P
+"nnoremap 'q 'Q
+"nnoremap 'r 'R
+"nnoremap 's 'S
+"nnoremap 't 'T
+"nnoremap 'u 'U
+"nnoremap 'v 'V
+"nnoremap 'w 'W
+"nnoremap 'x 'X
+"nnoremap 'y 'Y
+"nnoremap 'z 'Z
+
+
+"""
+" Temporary
+"""
+
+"" camel case
+"nmap <leader>xq :%s/LabelStudios/DatabasesWeaviate/g<CR>
+"nmap <leader>xw :%s/LabelStudio/DatabaseWeaviate/g<CR>
+"" case
+"nmap <leader>xe :%s/labelStudios/databasesWeaviate/g<CR>
+"nmap <leader>xr :%s/labelStudio/databaseWeaviate/g<CR>
+"" snake case
+"nmap <leader>xt :%s/label_studios/databases_weaviate/g<CR>
+"nmap <leader>xy :%s/label_studio/database_weaviate/g<CR>
+"" kebab case
+"nmap <leader>xu :%s/label-studios/databases-weaviate/g<CR>
+"nmap <leader>xo :%s/label-studio/database-weaviate/g<CR>
+"" other
+"nmap <leader>xi :%s/LABEL_STUDIO/DATABASE_WEAVIATE/g<CR>
+"nmap <leader>xx <leader>xq<leader>xw<leader>xe<leader>xr<leader>xt<leader>xy<leader>xu<leader>xi
+"

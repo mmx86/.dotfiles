@@ -11,20 +11,20 @@
   "dns": {
     "servers": [
       // "google": Public DNS for regular domains (8.8.8.8)
-      { "tag": "google", "address": "8.8.8.8" },
+      { "tag": "google", "type": "udp", "server": "8.8.8.8", "server_port": 53 },
       
       // "work-dns": Internal work DNS servers
       // - Used for work domains only (see rules below)
       // - "detour": "proxy" means queries go through SOCKS tunnel to reach 10.0.16.x
       //   (internal DNS is only accessible via work VPN on laptop)
-      // - Two servers for redundancy: 10.0.16.7 primary, 10.0.16.8 fallback
-      { "tag": "work-dns", "address": ["10.0.16.7", "10.0.16.8"], "detour": "proxy" }
+      { "tag": "work-dns-1", "type": "udp", "server": "10.0.16.7", "server_port": 53, "detour": "proxy" },
+      { "tag": "work-dns-2", "type": "udp", "server": "10.0.16.8", "server_port": 53, "detour": "proxy" }
     ],
     "rules": [
       // If query matches work domain suffixes, use internal DNS
       // This resolves internal-only hostnames that don't exist in public DNS
-      { "domain_suffix": [".inno.tech", ".scibox.tech", ".sfera-t1.ru"], "server": "work-dns" }
-      // Everything else → uses "google" (8.8.8.8)
+      { "domain_suffix": [".inno.tech", ".scibox.tech", ".sfera-t1.ru"], "server": "work-dns-1" }
+      // Everything else -> uses "google" (8.8.8.8)
     ]
   },
 
@@ -34,7 +34,7 @@
     {
       "type": "tun",                    // Virtual network interface type
       "tag": "tun-in",
-      "inet4_address": "172.19.0.1/30", // IP assigned to virtual interface
+      "address": ["172.19.0.1/30"],     // IP assigned to virtual interface (new format)
       "auto_route": true,               // Automatically configure system routes
       "strict_route": false,            // Don't force ALL traffic (allows exceptions)
       "sniff": true                     // Read domain from TLS SNI / HTTP Host header
@@ -49,8 +49,8 @@
     {
       "type": "socks",
       "tag": "proxy",
-      "server": "192.168.0.100",  // Your laptop's IP on local network
-      "server_port": 1080          // SOCKS5 proxy port on laptop
+      "server": "127.0.0.1",    // SOCKS5 proxy is local (created by SSH)
+      "server_port": 1080        // SOCKS5 proxy port
     },
     // "direct": Direct internet connection (no tunnel)
     { "type": "direct", "tag": "direct" }
@@ -59,20 +59,19 @@
   // Route: Rules to decide which outbound to use
   "route": {
     "rules": [
-      // DNS protocol traffic → direct (DNS is handled by "dns" section above)
+      // DNS protocol traffic -> direct (DNS is handled by "dns" section above)
       { "protocol": "dns", "outbound": "direct" },
       
-      // Work domains → through proxy (laptop → VPN)
+      // Work domains -> through proxy (laptop -> VPN)
       // "sniff": true reads domain from HTTPS/TLS handshake
       { "domain_suffix": [".inno.tech", ".scibox.tech", ".sfera-t1.ru"], "outbound": "proxy" },
       
-      // Work IP ranges → through proxy (fallback for non-TLS connections)
+      // Work IP ranges -> through proxy (fallback for non-TLS connections)
       // Catches direct IP connections to work subnets
       { "ip_cidr": ["10.0.0.0/8", "172.16.0.0/12"], "outbound": "proxy" }
       
-      // Everything else → direct (implicit default)
+      // Everything else -> direct (implicit default)
     ],
     "auto_detect_interface": true  // Automatically detect which physical interface to use
   }
 }
-
