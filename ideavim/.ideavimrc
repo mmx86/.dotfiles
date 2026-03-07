@@ -76,19 +76,18 @@ nmap <leader>? :action GotoAction<CR>
 " Temporary
 """
 
-"" camel case
-"nmap <leader>xq :%s/LabelStudios/DatabasesWeaviate/g<CR>
-"nmap <leader>xw :%s/LabelStudio/DatabaseWeaviate/g<CR>
-"" case
-"nmap <leader>xe :%s/labelStudios/databasesWeaviate/g<CR>
-"nmap <leader>xr :%s/labelStudio/databaseWeaviate/g<CR>
-"" snake case
-"nmap <leader>xt :%s/label_studios/databases_weaviate/g<CR>
-"nmap <leader>xy :%s/label_studio/database_weaviate/g<CR>
-"" kebab case
-"nmap <leader>xu :%s/label-studios/databases-weaviate/g<CR>
-"nmap <leader>xo :%s/label-studio/database-weaviate/g<CR>
-"" other
-"nmap <leader>xi :%s/LABEL_STUDIO/DATABASE_WEAVIATE/g<CR>
-"nmap <leader>xx <leader>xq<leader>xw<leader>xe<leader>xr<leader>xt<leader>xy<leader>xu<leader>xi
-"
+" camel case
+nmap <leader>zq :%s/LabelStudios/ApiKeys/g<CR>
+nmap <leader>zw :%s/LabelStudio/ApiKey/g<CR>
+" case
+nmap <leader>ze :%s/labelStudios/apiKeys/g<CR>
+nmap <leader>zr :%s/labelStudio/apiKey/g<CR>
+" snake case
+nmap <leader>zt :%s/label_studios/api_keys/g<CR>
+nmap <leader>zy :%s/label_studio/api_key/g<CR>
+" kebab case
+nmap <leader>zu :%s/label-studios/api-keys/g<CR>
+nmap <leader>zo :%s/label-studio/api-key/g<CR>
+" other
+nmap <leader>zi :%s/LABEL_STUDIO/API_KEY/g<CR>
+nmap <leader>zz <leader>zq<leader>zw<leader>ze<leader>zr<leader>zt<leader>zy<leader>zu<leader>zi
